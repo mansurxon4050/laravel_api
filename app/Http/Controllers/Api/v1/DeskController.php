@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeskStoreRequest;
 use App\Http\Resources\DeskResource;
 use App\Models\Desk;
-use App\Models\Desk as DeskAlias;
 use http\Client\Response;
-use Illuminate\Http\Request;
 
 class DeskController extends Controller
 {
@@ -19,7 +17,7 @@ class DeskController extends Controller
      */
     public function index()
     {
-        return DeskResource::collection(DeskAlias::all());
+        return DeskResource::collection(Desk::all());
 
     }
 
@@ -58,7 +56,7 @@ class DeskController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return DeskAlias
+     * @return Desk
      */
     public function update(DeskStoreRequest $request, Desk $desk)
     {
@@ -78,6 +76,6 @@ class DeskController extends Controller
     {
         $desk->delete();
 
-//        return  response(null, status: Response::$HTTP_NO_CONTENT);
+        return  response(null, status: Response::$HTTP_NO_CONTENT);
     }
 }
